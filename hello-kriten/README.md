@@ -64,13 +64,14 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
 ```
 Hello, Kriten!
 
-Extra vars:
-{'name': 'Ethan Hunt', 'operation': 'Mission impossible'}
 
-Revealing secrets, which are no longer secret!
-username:admin
-super_secret:1234567890!
-password:P@55w0rd!
 
-Script complete.
+Revealing secrets, which are no longer secrets!
+
+^JSON
+{"extra_vars": {"name": "Ethan Hunt", "operation": "Mission impossible"}, "secrets": {"username": "admin", "super_secret": "1234567890!", "password": "P@55w0rd!"}}
+^JSON
+
+
+Script completed.
 ```
