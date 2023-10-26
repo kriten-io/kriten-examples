@@ -32,7 +32,7 @@
 
     - name: Cisco NXOS remove timestamp from config
       lineinfile:
-        path: "/tmp/network_backup/nxos/{{ inventory_hostname }}/{{ inventory_hostname }}.cfg"
+        path: "/tmp/network_backup/{{ inventory_hostname }}/{{ inventory_hostname }}.cfg"
         state: absent
         regexp: '^!Time'
       when: ansible_network_os == "nxos"
@@ -41,7 +41,7 @@
       ios_config:
         backup: yes
         backup_options:
-          dir_path: "/tmp/network_backup/ios/{{ inventory_hostname }}/"
+          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
           filename: "{{ inventory_hostname }}.cfg"
       when: ansible_network_os == "ios"
 
@@ -49,7 +49,7 @@
       eos_config:
         backup: yes
         backup_options:
-          dir_path: "/tmp/network_backup/eos/{{ inventory_hostname }}/"
+          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
           filename: "{{ inventory_hostname }}.cfg"
       when: ansible_network_os == "eos"
 
@@ -57,7 +57,10 @@
       asa_config:
         backup: yes
         backup_options:
-          dir_path: "/tmp/network_backup/asa/{{ inventory_hostname }}/"
+          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
           filename: "{{ inventory_hostname }}.cfg"
       when: ansible_network_os == "asa"
 
+    - name: Display configuration file
+      command: cat "{{ inventory_hostname }}.cfg" chdir="/tmp/network_backup/{{ inventory_hostname }}/"
+      register: command_output
