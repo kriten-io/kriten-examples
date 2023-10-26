@@ -12,7 +12,7 @@ python3 macfinder.py
 ## To run on Kriten:
 
 Where $KRITEN_URL is set to the URL of your Kriten instance.
-eg. `export KRITEN_URL=http://kriten.kriten.io`
+eg. `export KRITEN_URL=http://kriten-community.kriten.io`
 
 1. Login
 ```
