@@ -23,7 +23,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
   "name": "kriten-ansible-examples",
-  "image": "python:3.9-slim",
+  "image": "evolvere/kriten-ansible:0.1",
   "gitURL": "https://github.com/Kriten-io/Kriten-examples.git"
 }'
 ```
@@ -33,7 +33,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 --header 'Content-Type: application/json' \
 --data '{
   "name": "network-backup",
-  "command": "python hello-kriten/hello-kriten.py",
+  "command": "ansible-playbook -i ansible-backup/hosts ansible-backup/backup.yaml",
   "runner": "kriten-ansible-examples",
   "secret": {
       "network_username": "admin",
