@@ -29,7 +29,7 @@ curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
-  "id": "kriten-examples",
+  "name": "kriten-examples",
   "image": "python:3.9-slim",
   "gitURL": "https://github.com/Kriten-io/Kriten-examples.git"
 }'
@@ -39,7 +39,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 --header 'Content-Type: application/json' \
 --data '{
-  "id": "macfinder",
+  "name": "macfinder",
   "command": "python macfinder/macfinder.py",
   "runner": "kriten-examples"
 }'
