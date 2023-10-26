@@ -11,11 +11,12 @@ python3 macfinder.py
 
 ## To run on Kriten:
 
-Replace {KRITEN_URL} with the URL of your Kriten instance.
+Where $KRITEN_URL is set to the URL of your Kriten instance.
+eg. `export KRITEN_URL=http://kriten.kriten.io`
 
 1. Login
 ```
-curl -c ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
+curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "username": "root",
@@ -25,7 +26,7 @@ curl -c ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
 ```
 2. Create a runner which references a Python image and the git repository.
 ```
-curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "id": "python-utilities",
@@ -35,7 +36,7 @@ curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
 ```
 3. Create a task that references the runner and the command to run the script.
 ```
-curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "id": "macfinder",
@@ -45,7 +46,7 @@ curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/login' \
 ```
 4. Launch job.
 ```
-curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/jobs/macfinder' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/macfinder' \
 --header 'Content-Type: application/json' \
 --data '{
   "macaddress": "00:50:56:9a:25:71"
@@ -57,7 +58,7 @@ curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/jobs/macfinder' \
 ```
 5. Read the job output.
 ```
-curl -b ./token.txt 'http://{KRITEN_URL}/api/v1/jobs/macfinder-9p8nc' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/macfinder-9p8nc' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
