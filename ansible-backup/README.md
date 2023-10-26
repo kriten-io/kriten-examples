@@ -1,6 +1,7 @@
 # ansible-backup
 
 Simple Ansible playbook to backup network devices.
+Note that this playbook does not save the configuration, it just prints it to illustrate running Ansible on Kriten.
 Edit `hosts` to add names and IP addresses of devices reachable in your network.
 ## To run on Kriten:
 
