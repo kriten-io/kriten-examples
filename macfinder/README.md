@@ -29,9 +29,9 @@ curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
-  "id": "python-utilities",
+  "id": "Kriten-examples",
   "image": "python:3.9-slim",
-  "gitURL": "https://github.com/Kriten-io/python-utilities-example.git"
+  "gitURL": "https://github.com/Kriten-io/Kriten-examples.git"
 }'
 ```
 3. Create a task that references the runner and the command to run the script.
@@ -40,8 +40,8 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "id": "macfinder",
-  "command": "python macfinder",
-  "runner": "python-utilities"
+  "command": "python macfinder/macfinder.py",
+  "runner": "Kriten-examples"
 }'
 ```
 4. Launch job.
