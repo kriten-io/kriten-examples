@@ -1,4 +1,4 @@
-# helo-kriten
+# hello-kriten
 
 There is a simple python script, which demonstrates access to input variables and secrets, provided by Kriten to the Job container, where the script is executed.
 
