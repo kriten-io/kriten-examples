@@ -1,0 +1,23 @@
+[arista]
+evo-eos02 ansible_host=192.168.10.168
+
+[nexus]
+evo-nexus01 ansible_host=192.168.10.213
+
+[arista:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_user=admin
+ansible_password=admin
+ansible_network_os=eos
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
+
+[nexus:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_user=admin
+ansible_password=admin
+ansible_network_os=nxos
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
