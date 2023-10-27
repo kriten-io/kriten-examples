@@ -28,20 +28,20 @@
         
     - name: Cisco NXOS Command
       nxos_command:
-        command: "{{ command }}"
+        commands: "{{ command }}"
       register: command_output
       when: ansible_network_os == "nxos"
 
 
     - name: Cisco IOS Command
       ios_command:
-        command: "{{ command }}"
+        commands: "{{ command }}"
       register: command_output
       when: ansible_network_os == "ios"
 
     - name: Arista EOS Command
       eos_command:
-        command: "{{ command }}"
+        commands: "{{ command }}"
       register: command_output
       when: ansible_network_os == "eos"
 
