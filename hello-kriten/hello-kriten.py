@@ -44,9 +44,7 @@ else:
 
 return_result['secrets'] = secrets
 
-print('^JSON')
 print(json.dumps(return_result))
-print('^JSON')
 
 print('\n')
 print('Script completed.')
