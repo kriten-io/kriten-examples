@@ -10,6 +10,7 @@
     - name: Reading target hosts from input vars and storing as localhost fact
       set_fact:
          target_hosts: "{{ input_vars['target_hosts'] }}"
+         command: "{{ input_vars['command'] }}"
 
 - name: Network Configs Backup
   hosts: "{{ hostvars['localhost']['target_hosts'] }}"
@@ -21,50 +22,29 @@
     - input_vars: "{{ lookup('ansible.builtin.env', 'EXTRA_VARS')}}"
 
   tasks:
-
-    - name: Cisco NXOS Backup
-      nxos_config:
-        backup: yes
-        backup_options:
-          dir_path: "/tmp/network_backup/nxos/{{ inventory_hostname }}/"
-          filename: "{{ inventory_hostname }}.cfg"
+    - name: Set command variable
+      set_fact:
+        command: "{{ hostvars['localhost']['command'] }}"
+        
+    - name: Cisco NXOS Command
+      nxos_command:
+        command: "{{ command }}"
+      register: command_output
       when: ansible_network_os == "nxos"
 
-    - name: Cisco NXOS remove timestamp from config
-      lineinfile:
-        path: "/tmp/network_backup/{{ inventory_hostname }}/{{ inventory_hostname }}.cfg"
-        state: absent
-        regexp: '^!Time'
-      when: ansible_network_os == "nxos"
 
-    - name: Cisco IOS Backup
-      ios_config:
-        backup: yes
-        backup_options:
-          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
-          filename: "{{ inventory_hostname }}.cfg"
+    - name: Cisco IOS Command
+      ios_command:
+        command: "{{ command }}"
+      register: command_output
       when: ansible_network_os == "ios"
 
-    - name: Arista Backup
-      eos_config:
-        backup: yes
-        backup_options:
-          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
-          filename: "{{ inventory_hostname }}.cfg"
+    - name: Arista EOS Command
+      eos_command:
+        command: "{{ commmand }}"
+      register: command_output
       when: ansible_network_os == "eos"
 
-    - name: Cisco ASA Backup
-      asa_config:
-        backup: yes
-        backup_options:
-          dir_path: "/tmp/network_backup/{{ inventory_hostname }}/"
-          filename: "{{ inventory_hostname }}.cfg"
-      when: ansible_network_os == "asa"
-
-    - name: Display configuration file
-      command: cat "{{ inventory_hostname }}.cfg" chdir="/tmp/network_backup/{{ inventory_hostname }}/"
-      register: command_output
-
-    - name: Print to console
+    - name: Print command output into stdout
       debug:
         msg: "{{command_output.stdout}}"
