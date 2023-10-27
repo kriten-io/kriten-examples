@@ -1,5 +1,4 @@
 import os
-import json
 from pprint import pprint
 
 return_result = {}
@@ -10,7 +9,7 @@ secrets_path = '/etc/secret/'
 print('Hello, Kriten!\n')
 
 print("This script demonstrates Kriten's capabilities.")
-print("It reads input variables (EXTRA_VARS) and secrets and prints them out.")
+print("It reads input variables (EXTRA_VARS) and secrets, and prints them.")
 
 # Kriten exposes input variables for the Job as env variable 'EXTRA_VARS' in json format
 # Following code reads it and prints out content
@@ -47,7 +46,7 @@ else:
 
 return_result['secrets'] = secrets
 
-pprint(json.dumps(return_result))
+pprint(return_result)
 
 print('\n')
 print('Script completed.')
