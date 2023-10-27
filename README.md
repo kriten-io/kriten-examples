@@ -2,7 +2,7 @@
 
 Code samples and instructions on how to run them on Kriten.
 ```
-ansible-backup Run an Ansible playbook to backup network configurations.
+ansible-command Run command on a network devices with Ansible playbook.
 hello-kriten   Simple hello world program using extra_vars and secrets.
 macfinder      Simulates a program to locate a MAC address.
 ```
