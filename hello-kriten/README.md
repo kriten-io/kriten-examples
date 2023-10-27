@@ -8,7 +8,7 @@ Where $KRITEN_URL is set to the URL of your Kriten instance.
 eg. `export KRITEN_URL=http://kriten-community.kriten.io`
 
 1. Login
-```
+```console
 curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -18,7 +18,7 @@ curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 }' 
 ```
 2. Create a runner which references a Python image and the git repository.
-```
+```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -28,7 +28,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 }'
 ```
 3. Create a task that references the runner and the command to run the script.
-```
+```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -43,7 +43,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 }'
 ```
 4. Launch job.
-```
+```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -52,25 +52,23 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten' \
 }'
 ```
    which returns a job identifier.
-```
+```json
 {"msg":"job executed successfully","value":"hello-kriten-ks67g"}
 ```
 5. Read the job output.
-```
+```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
-```
+```console
 Hello, Kriten!
 
 
 
 Revealing secrets, which are no longer secrets!
 
-^JSON
 {"extra_vars": {"name": "Ethan Hunt", "operation": "Mission impossible"}, "secrets": {"username": "admin", "super_secret": "1234567890!", "password": "P@55w0rd!"}}
-^JSON
 
 
 Script completed.
