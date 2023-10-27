@@ -1,7 +1,7 @@
-# ansible-backup
+# ansible-command
 
-Simple Ansible playbook to backup network devices.
-Note that this playbook does not save the configuration, it just prints it to illustrate running Ansible on Kriten.
+Simple Ansible playbook to run a show command on network devices.
+This playbook prints output of command and illustrates self-services capability of running Ansible on Kriten.
 Edit `hosts` to add names and IP addresses of devices reachable in your network.
 ## To run on Kriten:
 
@@ -25,7 +25,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --data '{
   "name": "kriten-ansible-examples",
   "image": "evolvere/kriten-ansible:0.1",
-  "gitURL": "https://github.com/Kriten-io/Kriten-examples.git"
+  "gitURL": "https://github.com/kriten-io/kriten-examples.git"
 }'
 ```
 3. Create a task that references the runner and the command to run the script.
@@ -33,8 +33,8 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "network-backup",
-  "command": "ansible-playbook -i ansible-backup/hosts ansible-backup/backup.yaml",
+  "name": "network-command",
+  "command": "ansible-playbook -i ansible-command/hosts ansible-command/command.yaml",
   "runner": "kriten-ansible-examples",
   "secret": {
       "network_username": "admin",
@@ -44,7 +44,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 ```
 4. Launch job.
 ```
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-backup' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
 --header 'Content-Type: application/json' \
 --data '{
   "target_hosts": "evo-eos02"
@@ -52,11 +52,11 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-backup' \
 ```
    which returns a job identifier.
 ```
-{"msg":"job executed successfully","value":"network-backup-jhvxx"}
+{"msg":"job executed successfully","value":"network-command-jhvxx"}
 ```
 5. Read the job output.
 ```
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-backup-jhvxx' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-jhvxx' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
