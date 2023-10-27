@@ -24,7 +24,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --data '{
   "name": "kriten-examples",
   "image": "python:3.9-slim",
-  "gitURL": "https://github.com/Kriten-io/Kriten-examples.git"
+  "gitURL": "https://github.com/kriten-io/kriten-examples.git"
 }'
 ```
 3. Create a task that references the runner and the command to run the script.
