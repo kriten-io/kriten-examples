@@ -47,7 +47,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "Ethan Hunt",
+  "agent_name": "Ethan Hunt",
   "operation":"Mission impossible"
 }'
 ```
@@ -64,11 +64,14 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
 ```console
 Hello, Kriten!
 
+This script demonstrates Kriten's capabilities.
+It reads input variables (EXTRA_VARS) and secrets, and prints them.
 
 
-Revealing secrets, which are no longer secrets!
-
-{"extra_vars": {"name": "Ethan Hunt", "operation": "Mission impossible"}, "secrets": {"username": "admin", "super_secret": "1234567890!", "password": "P@55w0rd!"}}
+{'extra_vars': {'agent_name': 'Ethan Hunt', 'operation': 'Mission impossible'},
+ 'secrets': {'password': 'P@55w0rd!',
+             'super_secret': '1234567890!',
+             'username': 'admin'}}
 
 
 Script completed.
