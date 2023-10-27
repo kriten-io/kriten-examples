@@ -9,6 +9,9 @@ secrets_path = '/etc/secret/'
 
 print('Hello, Kriten!\n')
 
+print("This script demonstrates Kriten's capabilities.")
+print("It reads input variables (EXTRA_VARS) and secrets and prints them out.")
+
 # Kriten exposes input variables for the Job as env variable 'EXTRA_VARS' in json format
 # Following code reads it and prints out content
 
@@ -25,13 +28,13 @@ else:
     return_result['extra_vars'] = {}
     
 print('\n')
+
 # Kriten exposes task secrets to the Job container as files stored in /etc/secret/ directory.
 # Following code reads those files and prints in format 'filename:content'
 
 secret_files = os.listdir(secrets_path)
 
 if secret_files:
-    print('Revealing secrets, which are no longer secrets!\n')
     for file_name in secret_files:
         if os.path.isfile(secrets_path + file_name):
             with open(secrets_path + file_name, 'r') as f:
@@ -44,7 +47,7 @@ else:
 
 return_result['secrets'] = secrets
 
-print(json.dumps(return_result))
+pprint(json.dumps(return_result))
 
 print('\n')
 print('Script completed.')
