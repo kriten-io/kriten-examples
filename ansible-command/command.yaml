@@ -12,7 +12,7 @@
          target_hosts: "{{ input_vars['target_hosts'] }}"
          command: "{{ input_vars['command'] }}"
 
-- name: Network Configs Backup
+- name: Network Command
   hosts: "{{ hostvars['localhost']['target_hosts'] }}"
   connection: network_cli
   gather_facts: no
