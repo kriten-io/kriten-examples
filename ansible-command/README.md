@@ -3,6 +3,9 @@
 Simple Ansible playbook to run a show command on network devices.
 This playbook prints output of command and illustrates self-services capability of running Ansible on Kriten.
 Edit `hosts` to add names and IP addresses of devices reachable in your network.
+
+Note: This playbook was tested with Ansible 2.9.
+
 ## To run on Kriten:
 
 Where $KRITEN_URL is set to the URL of your Kriten instance.
@@ -18,7 +21,7 @@ curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
   "provider": "local"
 }' 
 ```
-2. Create a runner which references an image with Ansible installed and the git repository.
+2. Create a runner which references an image with Ansible installed.
 ```
 curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
