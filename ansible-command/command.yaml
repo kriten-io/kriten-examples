@@ -41,7 +41,7 @@
 
     - name: Arista EOS Command
       eos_command:
-        command: "{{ commmand }}"
+        command: "{{ command }}"
       register: command_output
       when: ansible_network_os == "eos"
 
