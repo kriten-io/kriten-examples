@@ -46,8 +46,8 @@ else:
     print("No task secrets provided.")
 
 return_result['secrets'] = secrets
-
+print("^JSON")
 pprint(return_result)
-
+print("^JSON")
 print('\n')
 print('Script completed.')
