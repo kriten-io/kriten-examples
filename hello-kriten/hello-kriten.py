@@ -1,5 +1,6 @@
 import os
 import json
+from pprint import pprint
 
 return_result = {}
 secrets = {}
@@ -46,9 +47,13 @@ else:
 
 return_result['secrets'] = secrets
 
-print("^JSON\n")
-print(return_result)
-print("^JSON\n")
+pprint(return_result)
+
+print("Printing JSON string.\n")
+
+print("^JSON")
+print(json.dumps(return_result))
+print("^JSON")
 
 print('\n')
 print('Script completed.')
