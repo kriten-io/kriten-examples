@@ -49,11 +49,5 @@ return_result['secrets'] = secrets
 
 pprint(return_result)
 
-print("Printing JSON string.\n")
-
-print("^JSON")
-print(json.dumps(return_result))
-print("^JSON")
-
 print('\n')
 print('Script completed.')
