@@ -13,5 +13,7 @@ else:
 msg_xmas = pyfiglet.figlet_format("Merry Christmas")
 msg_name = pyfiglet.figlet_format(name)
 
+print('\n')
 print(msg_xmas)
 print(msg_name)
+print('\n')
