@@ -34,7 +34,8 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
 --data '{
   "name": "xmas",
   "command": "python xmas/xmas.py",
-  "runner": "kriten-xmas-examples"
+  "runner": "kriten-xmas-examples",
+  "synchronous": true
   }
 }'
 ```
