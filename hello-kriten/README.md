@@ -85,7 +85,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
 
 ```
 
-  To return job stdout as text, append \log to the URL
+  To return job stdout as text, append /log to the URL
 ```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g/log' \
 --header 'Content-Type: application/json'
