@@ -1,6 +1,9 @@
 import os
 import json
 import pyfiglet
+from rich.console import Console
+
+console = Console()
 
 extra_vars = os.environ.get('EXTRA_VARS')
 
@@ -9,11 +12,12 @@ if extra_vars:
     name = extra_vars_data.get('from')
 else:
     name = ''
+if name:
+    name = "from " + name
 
 msg_xmas = pyfiglet.figlet_format("Merry Christmas")
 msg_name = pyfiglet.figlet_format(name)
 
-print('\n')
-print(msg_xmas)
-print(msg_name)
-print('\n')
+#console.print(msg_xmas_in_colour)
+console.print(f'[red]{msg_xmas}')
+console.print(f'[green]{msg_name}')
