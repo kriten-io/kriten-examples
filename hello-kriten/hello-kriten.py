@@ -39,7 +39,6 @@ if secret_files:
         if os.path.isfile(secrets_path + file_name):
             with open(secrets_path + file_name, 'r') as f:
                 value = f.read()
-                #print(f'{file_name}:{value}')
                 secrets[file_name] = value
 
 else:
@@ -47,7 +46,12 @@ else:
 
 return_result['secrets'] = secrets
 
-pprint(return_result)
+# Kriten returns result in JSON format, which includes stdout
+# To return structured data, Kriten can capture valid JSON string from stdout inside ^JSON delimeters
+
+print('^JSON\n')
+print(json.dumps(return_result))
+print('^JSON\n')
 
 print('\n')
 print('Script completed.')
