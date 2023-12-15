@@ -61,6 +61,29 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
+```json
+{
+  "id": "hello-kriten-rqlvg",
+  "owner": "root",
+  "startTime": "Fri Dec 15 17:11:35 UTC 2023",
+  "completionTime": "Fri Dec 15 17:11:40 UTC 2023",
+  "failed": 0,
+  "completed": 1,
+  "stdout": "Hello, Kriten!\n\nThis script demonstrates Kriten's capabilities.\nIt reads input variables (EXTRA_VARS) and secrets, and prints them.\n\n\n^JSON\n\n{\"extra_vars\": {\"agent_name\": \"Ethan Hunt\", \"operation\": \"Mission impossible\"}, \"secrets\": {\"password\": \"P@55w0rd!\", \"username\": \"admin\", \"super_secret\": \"1234567890!\"}}\n^JSON\n\n\n\nScript completed.\n",
+  "json_data": {
+    "extra_vars": {
+      "agent_name": "Ethan Hunt",
+      "operation": "Mission impossible"
+    },
+    "secrets": {
+      "password": "P@55w0rd!",
+      "super_secret": "1234567890!",
+      "username": "admin"
+    }
+  }
+}
+
+```
 ```console
 Hello, Kriten!
 
