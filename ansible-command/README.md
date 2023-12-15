@@ -58,9 +58,9 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
 ```
 {"msg":"job executed successfully","value":"network-command-jhvxx"}
 ```
-5. Read the job output.
+5. Read the job's stdout output.
 ```
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-jhvxx' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-jhvxx/log' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
