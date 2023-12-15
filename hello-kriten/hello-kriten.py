@@ -47,7 +47,7 @@ else:
 return_result['secrets'] = secrets
 
 # Kriten returns result in JSON format, which includes stdout
-# To return structured data, Kriten can capture valid JSON string from stdout inside ^JSON delimeters
+# To return structured data, Kriten can capture valid JSON string from stdout inside ^JSON delimeters returned in json_data field
 
 print('^JSON\n')
 print(json.dumps(return_result))
