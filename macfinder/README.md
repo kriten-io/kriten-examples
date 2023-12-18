@@ -54,7 +54,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/macfinder' \
 ```
    which returns a job identifier.
 ```json
-{"msg":"job executed successfully","value":"macfinder-9p8nc"}
+{"id":"macfinder-9p8nc", "msg":"job executed successfully"}
 ```
 5. Read the job output.
 ```console
