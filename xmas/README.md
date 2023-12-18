@@ -49,11 +49,11 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/xmas' \
 ```
    which returns a job identifier.
 ```json
-{"msg":"job executed successfully","value":"xmas-ks67g"}
+{"id":"xmas-dx982", "msg":"job created successfully"}
 ```
 5. Read the job output.
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/xmas-ks67g' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/xmas-dx982/log' \
 --header 'Content-Type: application/json'
 ```
    which returns a message.
@@ -65,10 +65,9 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/xmas-ks67g' \
 |_|  |_|\___|_|  |_|   \__, |  \____|_| |_|_|  |_|___/\__|_| |_| |_|\__,_|___/
                        |___/                                                  
 
- ____  _                 
-/ ___|| |_ _____   _____ 
-\___ \| __/ _ \ \ / / _ \
- ___) | ||  __/\ V /  __/
-|____/ \__\___| \_/ \___|
-
+  __                       ____  _                 
+ / _|_ __ ___  _ __ ___   / ___|| |_ _____   _____ 
+| |_| '__/ _ \| '_ ` _ \  \___ \| __/ _ \ \ / / _ \
+|  _| | | (_) | | | | | |  ___) | ||  __/\ V /  __/
+|_| |_|  \___/|_| |_| |_| |____/ \__\___| \_/ \___|
 ```
