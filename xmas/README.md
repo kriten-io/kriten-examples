@@ -23,7 +23,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
   "name": "kriten-xmas-examples",
-  "image": "evolvere/kriten-xmas:0.1",
+  "image": "evolvere/kriten-xmas:0.2",
   "gitURL": "https://github.com/kriten-io/kriten-examples.git"
 }'
 ```
