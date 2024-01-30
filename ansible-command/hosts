@@ -1,5 +1,6 @@
 [arista]
 evo-eos02 ansible_host=192.168.10.168
+ceos ansible_host=212.2.240.47
 
 [nexus]
 evo-nexus01 ansible_host=192.168.10.213
