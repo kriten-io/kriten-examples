@@ -10,11 +10,11 @@ import requests
 import json
 
 
-class SHOWVER(Script):
+class CNFCMPY(Script):
 
     class Meta:
-        name = "Show Version"
-        description = "Run show version command"
+        name = "Compare Configs"
+        description = "Compare NetBox intended state with actual running config."
         commit_default = False
         field_order = ['kriten_url', 'kriten_username', 'kriten_password']
 
@@ -50,7 +50,7 @@ class SHOWVER(Script):
         })
         login_url = f"{data['kriten_url']}/api/v1/login"
 
-        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-show-version/"
+        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-compare-configs/"
 
         login = session.post(login_url, headers=headers, data=payload)
         stdout = ''

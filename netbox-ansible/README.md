@@ -1,70 +1,83 @@
-# netbox-ansible-webinar
+# netbox-ansible
 
-Ansible code to accompany the **Webinar: Getting Started with Network Automation: 
-NetBox & Ansible** hosted by **NetBox Labs** on 30th Jan 2024.
+Ansible playbooks that read the inventory from NetBox and connect to network devices.
+These playbooks have been adapted from [netbox-learning](https://github.com/netboxlabs/netbox-learning) repository.
 
-[![netbox ansible webinar](https://img.youtube.com/vi/BtzKX3Unuu0/0.jpg)](https://www.youtube.com/watch?v=BtzKX3Unuu0)
+## To run on Kriten:
 
-## Get Access to a NetBox instance
+Where $KRITEN_URL is set to the URL of your Kriten instance.
+eg. `export KRITEN_URL=http://kriten-community.kriten.io`
 
-For hassle-free access to NetBox you can either use the NetBox Labs demo site, or request a free 14 Day Trial of NetBox Cloud: 
+1. Login
+```
+curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "username": "root",
+  "password": "root",
+  "provider": "local"
+}' 
+```
+2. Create a runner which references an image with Ansible installed.
+```
+curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
+--header 'Content-Type: application/json' \
+--data '{
+  "branch": "main",
+  "name": "netbox-ansible",
+  "image": "evolvere/netbox-ansible-webinar:0.1",
+  "gitURL": "https://github.com/kriten-io/kriten-examples.git"
+}'
+```
+3. Create a task that references the runner and the command to run the script.
+```
+curl -b ./token.txt $KRITEN_URL'/api/v1/tasks' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "netbox-ansible-compare-configs",
+  "command": "ansible-playbook -i netbox-ansible/netbox_inv.yml netbox-ansible/compare_intended_vs_actual.yml",
+  "runner": "netbox-ansible",
+  "secret": {
+      "NETBOX_TOKEN": "a08684c4649c091e201f1eeb4eb5c18531e6d1b3",
+      "NETBOX_API": "http://192.168.10.55:8000/"
+  },
+      "schema": {
+              "properties": {
+                  "target_hosts": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9-]+$",
+                      "minLength": 1
+                  }
+                  },
+                  "required": [
+                      "target_hosts"
+                  ],
+                  "additionalProperties": false
+              }
+          }
 
-- [Demo Site](https://netboxlabs.com/netbox-demo/)
-- [Free Trial of NetBox Cloud](https://netboxlabs.com/trial/)
+}'
+```
+4. Launch job.
+```
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/netbox-ansible-compare-configs' \
+--header 'Content-Type: application/json' \
+--data '{
+  "target_hosts": "all"
+}'
+```
+   which returns a job identifier.
+```
+{"msg":"job created successfully","id":"netbox-ansible-compare-configs-6cx4"}
+```
+5. Read the job's stdout output.
+```
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/netbox-ansible-compare-configs-6cx4/log' \
+--header 'Content-Type: application/json'
+```
+   which returns the ansible output.
 
-## Getting Started With The Ansible Playbooks
+## To run from NetBox
 
-1. Clone the Git repo and change into the `netbox-ansible-webinar` directory:
-    ```
-    git clone https://github.com/netboxlabs/netbox-learning.git
-    cd netbox-learning/netbox-ansible-webinar
-    ```
-2. Create and activate Python 3 virtual environment:
-    ```
-    python3 -m venv ./venv
-    source venv/bin/activate
-    ```
-3. Upgrade pip:
-    ```
-    python3 -m pip install --upgrade pip
-    ```
-4. Install required Python packages:
+Add the Python scripts from custom_scripts to NetBox using the Customization > Scripts menu.
 
-    **option 1** - Install individual packages: 
-    ```
-    pip install pynetbox
-    pip install ansible
-    pip install pytz
-    pip install ansible-pylibssh
-    ```
-    **option 2** - Install from `requirements.txt` file: 
-    ```
-    pip install -r requirements.txt
-    ```
-5. Install Ansible Galaxy Collection for NetBox
-    ```
-    ansible-galaxy collection install netbox.netbox
-    ```
-6. Set environment variables for the NetBox API token and URL:
-    ```
-    export NETBOX_API=<YOUR_NETBOX_URL> (note - must include http:// or https://) 
-    export NETBOX_TOKEN=<YOUR_NETBOX_API_TOKEN>
-    ```
-7. List the devices and host variables retrieved from NetBox using the dynamic inventory: 
-    ```
-    ansible-inventory -i netbox_inv.yml --list
-    ```
-7. Run a playbook, for example: 
-    ```
-    ansible-playbook get_facts.yml
-    ```
-8. When you have finished working you can deactivate the Python virtual environment:
-    ```
-    deactivate
-    ```
-
-## Building the Virtual Network With Containerlab
-
-Follow these [instructions](./containerlab/README.md) to install containerlab, and build the lab network
-
-Alternatively you use the official [Containerlab documenation](https://containerlab.dev/install/)
