@@ -1,2 +1,2 @@
 ---
-backup_root: ./backups
+backup_root: /tmp/backups
