@@ -50,7 +50,7 @@ class COMPLY(Script):
         })
         login_url = f"{data['kriten_url']}/api/v1/login"
 
-        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-webinar-show-version/"
+        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-show-version/"
 
         login = session.post(login_url, headers=headers, data=payload)
         stdout = ''
@@ -73,3 +73,4 @@ class COMPLY(Script):
             self.log_failure(f"Kriten job login failed")
 
         return stdout
+
