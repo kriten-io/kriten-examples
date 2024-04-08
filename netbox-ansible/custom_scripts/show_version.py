@@ -20,7 +20,7 @@ class SHOWVER(Script):
 
     kriten_url = StringVar(
         description="URL for Kriten task",
-        default = "http://kriten-demo.192.168.10.102.nip.io"
+        default = "http://kriten.192.168.10.102.nip.io"
     )
     kriten_username = StringVar(
         description="Kriten username",
@@ -50,7 +50,7 @@ class SHOWVER(Script):
         })
         login_url = f"{data['kriten_url']}/api/v1/login"
 
-        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-show-version/"
+        launch_url = f"{data['kriten_url']}/api/v1/jobs/netbox-ansible-show-version"
 
         login = session.post(login_url, headers=headers, data=payload)
         stdout = ''
@@ -60,7 +60,7 @@ class SHOWVER(Script):
                 job_id = launch.json()["id"]
                 self.log_success(f"Job {job_id} launched")
                 job_not_finished = True
-                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}/"
+                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}"
                 while job_not_finished:
                     time.sleep(5)
                     result = session.get(result_url, headers=headers)
