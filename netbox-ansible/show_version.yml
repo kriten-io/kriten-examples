@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    - input_vars: "{{ lookup('ansible.builtin.env', 'EXTRA_VARS')}}"
+    input_vars: "{{ lookup('ansible.builtin.env', 'EXTRA_VARS')}}"
 
   tasks:
     - name: Reading target hosts from input vars and storing as localhost fact

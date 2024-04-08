@@ -10,7 +10,7 @@ import requests
 import json
 
 
-class NETBKUP(Script):
+class NETBACKUP(Script):
 
     class Meta:
         name = "Network Backup"
@@ -20,7 +20,7 @@ class NETBKUP(Script):
 
     kriten_url = StringVar(
         description="URL for Kriten task",
-        default = "http://kriten.192.168.10.102.nip.io"
+        default = "http://kriten-demo.192.168.10.102.nip.io"
     )
     kriten_username = StringVar(
         description="Kriten username",
@@ -60,11 +60,11 @@ class NETBKUP(Script):
                 job_id = launch.json()["id"]
                 self.log_success(f"Job {job_id} launched")
                 job_not_finished = True
-                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}"
+                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}/log"
                 while job_not_finished:
                     time.sleep(5)
                     result = session.get(result_url, headers=headers)
-                    stdout = result.text.replace("\\n", "\n")
+                    stdout = result.text
                     if "ignored=" in stdout:
                         job_not_finished = False
             else:

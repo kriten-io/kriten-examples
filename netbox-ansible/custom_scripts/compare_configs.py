@@ -60,11 +60,11 @@ class CNFCMPY(Script):
                 job_id = launch.json()["id"]
                 self.log_success(f"Job {job_id} launched")
                 job_not_finished = True
-                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}"
+                result_url = f"{data['kriten_url']}/api/v1/jobs/{job_id}/log"
                 while job_not_finished:
                     time.sleep(5)
                     result = session.get(result_url, headers=headers)
-                    stdout = result.text.replace("\\n", "\n")
+                    stdout = result.text
                     if "ignored=" in stdout:
                         job_not_finished = False
             else:
@@ -73,4 +73,3 @@ class CNFCMPY(Script):
             self.log_failure(f"Kriten job login failed")
 
         return stdout
-
