@@ -2,6 +2,7 @@
 - name: Git Pull
   hosts: localhost
   gather_facts: no
+  any_errors_fatal: true
   vars:
     - input_vars: "{{ lookup('ansible.builtin.env', 'EXTRA_VARS')}}"
     - github_pat: "{{ lookup('ansible.builtin.file', '/etc/secret/github_pat')}}"
@@ -33,6 +34,7 @@
 - name: Network Configs Backup
   hosts: "{{ hostvars['localhost']['target_hosts'] }}"
   connection: network_cli
+  any_errors_fatal: true
   gather_facts: no
   vars:
     - ansible_user: "{{ lookup('ansible.builtin.file', '/etc/secret/network_username')}}"
@@ -85,6 +87,7 @@
   hosts: localhost
   connection: local
   gather_facts: no
+  any_errors_fatal: true
   vars:
     - github_username: "{{ lookup('ansible.builtin.file', '/etc/secret/github_username')}}"
     - github_email: "{{ lookup('ansible.builtin.file', '/etc/secret/github_email')}}"
