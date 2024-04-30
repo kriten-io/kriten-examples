@@ -66,7 +66,7 @@ class DiscoverNetwork():
                     # location = nb.dcim.locations.get(name='location').id,
                     # rack = nb.dcim.racks.get(facility_id=1).id,
                     device_type = nb.dcim.device_types.get(slug='server').id,
-                    device_role = 1,
+                    device_role = 2,
                     # device_role = nb.dcim.device_role.get(name='norole').id,
                     status='active',
                 )
